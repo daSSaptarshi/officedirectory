@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      CompanyDirectory
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="./assets/css/material-dashboard.css" rel="stylesheet" />
+
+    <link href="./assets/css/style.css" rel="stylesheet" />
+    <script src="./assets/js/core/jquery.min.js"></script>
+    <script src="./assets/js/core/jquery-ui.js"></script>
+  </head>
+
+  <body class="">
+    <div class="wrapper ">
+
+      <!-- side-bar -->
+      <div class="sidebar sidebar-sm" data-color="purple" data-background-color="white">
+        <div class="sidebar-wrapper">
+          <!-- sidenav -->
+          <ul class="nav" id="side_nav">
+            <li class="nav-item active" id="dashboard">
+              <a class="nav-link pointer" onclick="get_all_employ()">
+                <i class="material-icons pointer">dashboard</i>
+              </a>
+            </li>
+            <li class="nav-item" id="add_record">
+              <a class="nav-link pointer">
+                <i class="material-icons pointer">person</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <div class="main-panel main-panel-sm">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+          <div class="container-fluid xs-p">
+            <div class="col-12 col-md-12 col-lg-12 mb-12 xs-p">
+              <div class="card card-sm mt-0 row" style="flex-direction: row; margin:0">
+                <div class="card-body row no-gutters align-items-center col-11" style="padding: 0.2rem 1rem;"
+                  id="panel1_bar">
+                  <div class="row col-lg-5 col-md-5 col-sm-5 col-5 col-xmm-12 mdm-1">
+                    <div class="col-auto pr-1">
+                      <i class="material-icons" style="font-size: 20px;margin-top: 0.6rem;">
+                        search
+                      </i>
+                    </div>
+                    <div class="col pl-1">
+                      <input class="form-control form-control-lg form-control-borderless" type="search"
+                        placeholder="Search topics or keywords" id='search_name'>
+                    </div>
+                  </div>
+                  <div class="row col-lg-5 col-md-5 col-sm-5 col-5 col-xmm-12 mdm-1">
+                    <div class="col-auto pr-0">
+                      <i class="material-icons" style="font-size: 20px;margin-top: 0.6rem;">
+                        location_on
+                      </i>
+                    </div>
+                    <div class="col pl-1">
+                      <input class="form-control form-control-lg form-control-borderless" type="search"
+                        placeholder="Search topics or keywords" id="search_location">
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 col-xmm-12 smm-flex">
+                    <button type="button" class="btn btn-lg btn-pirple btn-sm" onclick="filter_data()">Search</button>
+                  </div>
+                </div>
+                <div class="card-body row no-gutters align-items-center justify-content-center col-11"
+                  style="padding: 0.2rem 1rem; display: none;" id="panel2_bar">
+                  <h4 style="margin: 4px;">
+                    Add Employee
+                  </h4>
+                </div>
+                <button class="navbar-toggler xm-p-0" type="button" data-toggle="collapse"
+                  aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                  <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="content smm-pt-7" id="panel1">
+          <div class="container-fluid row mb-p">
+            <!-- filter-list -->
+            <!-- <div class="col-lg-2">
+              <div class="card">
+                <div class="card-header row pb-0">
+                  <p class="col-lg-10 col-md-10 col-sm-10 col-10"><strong>Filter</strong></p>
+                  <i class="material-icons pointer" id="filter_toggel_btn">
+                    filter_list
+                  </i>
+                </div>
+                <div class="card-body pt-0 row" id="filter_card">
+                  <div class="col-lg-12 col-md-6 col-sm-6 col-6">
+                    <p style="margin-bottom: 0.3rem;font-weight: 600;">Experience</p>
+                    <small>
+                      <table class="table table-sm table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <small>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input" id="exp1" name="Exprence"
+                                    value="01">
+                                  <label class="custom-control-label" for="exp1"><small>0
+                                      - 1</small></label>
+                                </div>
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input" id="exp2" name="Exprence"
+                                    value="12">
+                                  <label class="custom-control-label" for="exp2"><small>1
+                                      - 2</small></label>
+                                </div>
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input" id="exp3" name="Exprence"
+                                    value="23">
+                                  <label class="custom-control-label" for="exp3"><small>2
+                                      - 3</small></label>
+                                </div>
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input" id="exp4" name="Exprence"
+                                    value="4">
+                                  <label class="custom-control-label" for="exp4"><small>4+</small></label>
+                                </div>
+                              </small>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </small>
+                  </div>
+                </div>
+
+                <div data-color="purple" class="mx-auto" id="filter_btn">
+                  <small>
+                    <button class="btn btn-lg btn-pirple btn-sm" onclick="filter_data()">Search</button>
+                  </small>
+                </div>
+              </div>
+            </div> -->
+            <!-- dashboard-list-body -->
+            <div class="col-lg-12" id="main_list">
+              <div class="card">
+                <div class="card-body row">
+                  <div class="col-lg-8 col-md-8 col-8" id="employ_count"></div>
+                  <div class="col-lg-4 col-md-4 col-4">
+                    <i class="material-icons float-right pointer" onclick="refresh_filter()">
+                      refresh
+                    </i>
+                  </div>
+                </div>
+              </div>
+              <div class="row main" id="user_cards">
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+
+              <div class="card" id="employ_details_container">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content" id="panel2" style="display: none;">
+          <div class="contaier-fluid">
+            <div class="d-flex justify-content-center">
+              <div class="col-lg-10 card">
+                <form class="text-center border border-light p-3" id="panel2_form">
+                  <div class="form-row mb-4">
+                    <div class="col">
+                      <input type="text" id="first_name" class="form-control" placeholder="First name *">
+                      <div class="invalid-feedback" id="first_name_label">
+                        Please fill firstname.
+                      </div>
+                    </div>
+                    <div class="col">
+                      <input type="text" id="last_name" class="form-control" placeholder="Last name *">
+                      <div class="invalid-feedback" id="last_name_label">
+                        Please fill lastname.
+                      </div>
+                    </div>
+                  </div>
+                  <input type="email" id="email" class="form-control mb-4" placeholder="E-mail *">
+                  <div class="invalid-feedback mt-ve-1" id="email_label">
+                    Please fill email.
+                  </div>
+                  <div class="form-row mb-4">
+                    <div class="col">
+                      <select id="department" class="form-control">
+                      </select>
+                      <div class="invalid-feedback" id="department_label">
+                        Please select department.
+                      </div>
+                    </div>
+                    <div class="col">
+                      <input type="text" id="job_location" class="form-control" placeholder="Job location" disabled>
+                    </div>
+                  </div>
+                  <div class="form-row mb-4">
+                    <div class="col">
+                      <input type="text" id="job_title" class="form-control" placeholder="Job title *" required>
+                      <div class="invalid-feedback" id="job_title_label">
+                        Please provide a valid job title.
+                      </div>
+                    </div>
+                    <div class="col">
+                      <input type="number" id="jobExp" class="form-control" placeholder="JobExp *" required>
+                      <div class="invalid-feedback" id="jobExp_label">
+                        Please provide a valid input.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row mb-4">
+                    <div class="col">
+                      <input type="number" id="salary" class="form-control" placeholder="Salary *" required>
+                      <div class="invalid-feedback" id="salary_label">
+                        Please provide a valid salary.
+                      </div>
+                    </div>
+                    <div class="col">
+                      <input type="date" id="date" class="form-control" placeholder="Date *" required>
+                      <div class="invalid-feedback" id="date_label">
+                        Please provide a valid date.
+                      </div>
+                    </div>
+                  </div>
+                  <input type="text" id="manage_by" class="form-control mb-4" placeholder="Manage by *">
+                  <div class="invalid-feedback mt-ve-1" id="manage_by_label">
+                    Please provide a valid input.
+                  </div>
+                  <input type="file" name="employ_image" value="" id="employ_image" style="margin-top: 1rem;">
+                  <button type="button" class="btn btn-primary my-4 btn-block" onclick="add_employ()"
+                    style="border-radius: 2px;">Add</button>
+                  <button type="button" class="btn btn-info my-4 btn-block" onclick="cancel_add()"
+                    style="border-radius: 2px;">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- modal -->
+    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Update Record</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3" id="modal_body">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- js core functions -->
+    <script src="./assets/js/api/components/user-card.js"></script>
+    <script src="./assets/js/api/components/modal.js"></script>
+    <script src="./assets/js/api/components/employ_card.js"></script>
+    <script src="./assets/js/api/components/filter.js"></script>
+    <script src="./assets/js/api/components/mini_card.js"></script>
+    <script src="./util/validation.js"></script>
+    <script src="./assets/js/api/main.js"></script>
+
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="./assets/js/core/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+
+    <script>
+      $("#filter_toggel_btn").click(function () {
+        $("#filter_btn").slideToggle("fast", function () {
+        });
+        $("#filter_card").slideToggle("slow", function () {
+        });
+      });
+      if ($(window).width() < 1050) {
+        $("#filter_toggel_btn").click()
+      }
+
+    </script>
+
+  </body>
+
+</html>
